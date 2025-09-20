@@ -1,0 +1,6 @@
+# Ignorar dataset de imagens
+dataset/
+
+# Ignorar modelo treinado e labels
+face_model.yml
+labels.npy
