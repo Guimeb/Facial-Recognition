@@ -13,6 +13,7 @@ label = 0
 
 IMG_SIZE = (200, 200)  # mesmo tamanho usado na captura
 
+# Treinamento do modelo
 for person in people:
     person_path = os.path.join(DATA_PATH, person)
     files = [f for f in os.listdir(person_path) if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
@@ -31,7 +32,6 @@ for person in people:
             print(f"Aviso: não foi possível ler {img_path}, ignorando.")
             continue
 
-        # garante tamanho consistente
         if img.shape != IMG_SIZE:
             img = cv2.resize(img, IMG_SIZE)
 
@@ -46,7 +46,6 @@ labels = np.array(labels)
 print(f"\nTotal de imagens: {len(faces_data)}")
 print(f"Classes: {label_dict}")
 
-# Criar e treinar o reconhecedor LBPH
 face_recognizer = cv2.face.LBPHFaceRecognizer_create()
 face_recognizer.train(faces_data, labels)
 
